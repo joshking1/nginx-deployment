@@ -1,0 +1,41 @@
+Create the Namespace:
+
+kubectl apply -f production-namespace.yaml
+
+Create the Secret:
+
+kubectl apply -f nginx-secret.yaml -n production
+
+Apply the Pod Security Policy: 
+
+kubectl apply -f nginx-psp.yaml -n production
+
+Create Role and RoleBinding for PSP:
+
+kubectl apply -f nginx-psp-role.yaml -n production
+kubectl apply -f nginx-psp-rolebinding.yaml -n production
+
+Deploy the Nginx Deployment:
+
+kubectl apply -f nginx-deployment.yaml -n production
+
+Apply the Nginx Service:
+
+kubectl apply -f nginx-service.yaml -n production
+
+Apply the Ingress Resource:
+
+kubectl apply -f nginx-ingress.yaml -n production
+
+Deploy the Nginx Ingress Controller:
+
+kubectl apply -f nginx-ingress-controller.yaml -n production
+
+
+# Summary:
+Namespace: The deployment is scoped to the production namespace.
+Security: Includes a Pod Security Policy, Role, and RoleBinding for secure pod execution.
+Secrets: Environment variables are securely managed through Kubernetes Secrets.
+Ingress: Manages external traffic routing securely with an Ingress Controller.
+Probes: Readiness and Liveness probes ensure the health of the Nginx containers.
+Resource Limits: Defined resource requests and limits for the containers to ensure fair resource allocation.
